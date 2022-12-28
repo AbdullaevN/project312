@@ -1,11 +1,52 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import searchImage from "../../assets/images/search.png";
+import noti from "../../assets/images/not.svg";
+import avatar from "../../assets/images/avatar.png";
+import cloud from "../../assets/images/cloud.png";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+import "./mynavbar.css";
 
 export const MyNavbar = () => {
   const [open, setOpen] = React.useState(false);
   const [flyer, setFlyer] = React.useState(false);
   const [flyerTwo, setFlyerTwo] = React.useState(false);
+
+  //weather
+
+  const [weatherdata, setweatherData] = useState({});
+  // const [location, setLocation] = useState("");
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=bishkek&appid=64c73dc4529ec3f20be338620673c810`;
+  //api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid=64c73dc4529ec3f20be338620673c810
+
+  useEffect(() => {
+    async function getData() {
+      const Api = `https://api.openweathermap.org/data/2.5/weather?q=bishkek&appid=64c73dc4529ec3f20be338620673c810&units=metric`;
+
+      try {
+        let res = await axios.get(Api);
+        setweatherData(res.data);
+        console.log(res.data.main.temp);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getData();
+  }, []);
+
+  // console.log(`${weatherdata.data.main}`);
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.querySelector("#menu-btn");
+    const dropdown = document.querySelector("#dropdown");
+
+    menuBtn.addEventListener("click", () => {
+      dropdown.classList.toggle("hidden");
+      dropdown.classList.toggle("flex");
+    });
+  });
 
   return (
     <>
@@ -13,10 +54,10 @@ export const MyNavbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <a href="#">
+              <Link to={"/"}>
                 <span className="sr-only">Workflow</span>
                 <img className="h-8 w-auto sm:h-10" src={logo} alt="" />
-              </a>
+              </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
               <button
@@ -261,15 +302,97 @@ export const MyNavbar = () => {
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
               <a
                 href="#"
-                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 flex"
               >
-                Sign in
+                <img src={cloud} alt="" />
+                <span>{`${Math.round(weatherdata?.main?.temp)}`}&deg;C</span>
               </a>
               <a
                 href="#"
-                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-2 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white "
               >
-                Sign up
+                <img src={noti} alt="" />
+              </a>
+              <a
+                href="#"
+                className="ml-8 whitespace-nowrap inline-flex items-center justify-center  border border-transparent rounded-md shadow-sm text-base font-medium text-white "
+              >
+                {/* <img src={avatar} alt="" /> */}
+
+                <div>
+                  <div className="flex justify-center">
+                    <div>
+                      <div className="dropdown relative">
+                        <button
+                          className="dropdown-toggle px-2  py-2.5   text-white font-medium  text-xs          leading-tight          uppercase          rounded          shadow-md          transition
+          duration-150 ease-in-out flex items-center   whitespace-nowrap  "
+                          type="button"
+                          id="dropdownMenuButton1d"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <img src={avatar} alt="" />
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fas"
+                            data-icon="caret-down"
+                            className="w-2 ml-2"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
+                          >
+                            <path
+                              fill="black"
+                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                            ></path>
+                          </svg>
+                        </button>
+                        <ul
+                          className=" left-[-105px] dropdown-menu          min-w-max          absolute          hidden          bg-white          text-base          z-50          float-left          py-2          list-none          text-left          rounded-lg          shadow-lg          mt-1          m-0          bg-clip-padding border-none
+        "
+                          aria-labelledby="dropdownMenuButton1d"
+                        >
+                          <li>
+                            <a
+                              className="              dropdown-item              text-sm              py-2              px-4              font-normal        block       w-full     whitespace-nowrap  bg-transparent    text-gray-700   hover:bg-gray-100  "
+                              href="#"
+                            >
+                              .
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="  dropdown-item  text-sm  py-2       px-4 font-normal  block
+              w-full   whitespace-nowrap    bg-transparent  text-gray-700  hover:bg-gray-100  "
+                              href="#"
+                            >
+                              Вход
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className=" dropdown-item text-sm  py-2  px-4  font-normal  block  w-full  whitespace-nowrap  bg-transparent  text-gray-700  hover:bg-gray-100"
+                              href="#"
+                            >
+                              Регистрация
+                            </a>
+                          </li>
+                          <hr className="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
+                          <li>
+                            <a
+                              className="              dropdown-item              text-sm              py-2              px-4              font-normal              block              w-full              whitespace-nowrap              bg-transparent              text-gray-700              hover:bg-gray-100
+            "
+                              href="#"
+                            >
+                              Выход
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </a>
             </div>
           </div>
@@ -288,7 +411,7 @@ export const MyNavbar = () => {
         <div
           className={
             open
-              ? "opacity-100 scale-100 transition ease-out duration-200 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+              ? "opacity-100 scale-100   ease-out duration-200 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50"
               : "opacity-0 scale-95 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
           }
         >
@@ -305,7 +428,7 @@ export const MyNavbar = () => {
                     onClick={() => setOpen(!open)}
                   >
                     <span className="sr-only">Close menu</span>
-                    {/* Heroicon name: outline/x */}
+
                     <svg
                       className="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -326,24 +449,28 @@ export const MyNavbar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  <label className="relative flex justify-end flex-row items-center !mb-0">
-                    <input
-                      className="  placeholder:text-[#999999] block bg-[#F5F8F9]  md:w-[30rem]  border-none rounded-full py-2 pl-4 !pr-0 shadow-sm focus:outline-none  sm:text-sm text-[#999999]"
-                      placeholder="Поиск..."
-                      type="text"
-                      name="search"
-                    />
-                    <img
-                      className="absolute left-auto focus:outline-none h-2 w-auto sm:h-5"
-                      src={searchImage}
-                      alt=""
-                    />
-                  </label>
+                  <a
+                    href="#"
+                    className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50 "
+                  >
+                    <label className="relative flex justify-end flex-row items-center !mb-0 ">
+                      <input
+                        className="  placeholder:text-[#999999] block bg-[#F5F8F9] sm:w-[100%] md:w-[30rem]  border-none rounded-full py-2 pl-4 !pr-0 shadow-sm focus:outline-none  sm:text-sm text-[#999999]"
+                        placeholder="Поиск..."
+                        type="text"
+                        name="search"
+                      />
+                      <img
+                        className="absolute left-auto focus:outline-none md:h-2 w-auto sm:h-15"
+                        src={searchImage}
+                        alt=""
+                      />
+                    </label>
+                  </a>
                   <a
                     href="#"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
-                    {/* Heroicon name: outline/cursor-click */}
                     <svg
                       className="flex-shrink-0 h-6 w-6 text-indigo-600"
                       xmlns="http://www.w3.org/2000/svg"
@@ -363,11 +490,11 @@ export const MyNavbar = () => {
                       Engagement
                     </span>
                   </a>
-                  <a
+                  {/* <a
                     href="#"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
-                    {/* Heroicon name: outline/shield-check */}
+                    Heroicon name: outline/shield-check
                     <svg
                       className="flex-shrink-0 h-6 w-6 text-indigo-600"
                       xmlns="http://www.w3.org/2000/svg"
@@ -386,12 +513,11 @@ export const MyNavbar = () => {
                     <span className="ml-3 text-base font-medium text-gray-900">
                       Security
                     </span>
-                  </a>
+                  </a> */}
                   <a
                     href="#"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
-                    {/* Heroicon name: outline/view-grid */}
                     <svg
                       className="flex-shrink-0 h-6 w-6 text-indigo-600"
                       xmlns="http://www.w3.org/2000/svg"
@@ -415,7 +541,6 @@ export const MyNavbar = () => {
                     href="#"
                     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   >
-                    {/* Heroicon name: outline/refresh */}
                     <svg
                       className="flex-shrink-0 h-6 w-6 text-indigo-600"
                       xmlns="http://www.w3.org/2000/svg"
@@ -439,67 +564,25 @@ export const MyNavbar = () => {
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+              {/* <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 <a
                   href="#"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Pricing
                 </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Enterprise
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Blog
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Help Center
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Guides
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Security
-                </a>
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Events
-                </a>
-              </div>
+              </div> */}
               <div>
                 <a
                   href="#"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#FF961F] hover:bg-indigo-700"
                 >
-                  Sign up
+                  Регистрация
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
-                  Existing customer?
+                  Уже есть аккаунт?
                   <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                    Sign in
+                    Вход
                   </a>
                 </p>
               </div>

@@ -1,0 +1,49 @@
+{
+  "resources": [
+    {
+      "title": "Find me on Twitter",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d"
+    },
+    {
+      "title": "Welcome to Ark Labs",
+      "link": "https://ark-labs.co.uk",
+      "imageUrl": "https://placeimg.com/300/300/animals"
+    },
+    {
+      "title": "Some sort of third title",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://placeimg.com/300/300/architecture"
+    },
+    {
+      "title": "A personal site perhaps?",
+      "link": "https://robkendal.co.uk",
+      "imageUrl": "https://placeimg.com/300/300/nature"
+    },
+    {
+      "title": "Super item number five",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://placeimg.com/300/300/people"
+    },
+    {
+      "title": "Super item number six",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://placeimg.com/300/300/tech"
+    },
+    {
+      "title": "Super item number seven",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://placeimg.com/300/300/animals"
+    },
+    {
+      "title": "Super item number eight",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://placeimg.com/300/300/people"
+    },
+    {
+      "title": "Super item number the last",
+      "link": "https://twitter.com/kendalmintcode",
+      "imageUrl": "https://placeimg.com/300/300/tech"
+    }
+  ]
+}

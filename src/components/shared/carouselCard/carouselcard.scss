@@ -1,0 +1,32 @@
+// .c-card {
+//   img {
+//     transition: transform 0.3s ease-in-out;
+//   }
+
+//   &:hover {
+//     img {
+//       transform: scale(1.05);
+//     }
+//   }
+// }
+
+.swiper-container-1 {
+  --swiper-theme-color: #007aff;
+
+  --swiper-navigation-size: 44px;
+  --swiper-navigation-color: var(--swiper-theme-color);
+
+  --swiper-pagination-color: var(--swiper-theme-color);
+  --swiper-pagination-bullet-horizontal-gap: 4px;
+  --swiper-pagination-bullet-vertical-gap: 6px;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-width: 8px;
+  --swiper-pagination-bullet-height: 8px;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-inactive-color: black;
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+  --swiper-pagination-bullet-horizontal-gap: 4px;
+
+  --swiper-preloader-color: var(--swiper-theme-color);
+  --swiper-virtual-size: 80px;
+}
